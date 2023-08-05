@@ -266,6 +266,13 @@
     <script src="components/explicit_content_detection.js"></script>
 
     <script>
+        function getURLParameters() {
+            var params = new URLSearchParams(window.location.search);
+            return {
+            videoURL: params.get('videoURL'),
+            jsonURL: params.get('jsonURL')
+            };
+        }
 
         function jump_video_to_time(time) {
             const video = document.querySelector('video')
@@ -487,6 +494,16 @@ Find links to script examples at the top right of the screen.")
                 app.current_view = hash_value
             }
 
+        }
+
+        var params = getURLParameters();
+
+        if (params.videoURL) {
+        load_video_from_url(params.videoURL);
+        }
+
+        if (params.jsonURL) {
+        load_json_from_url(params.jsonURL);
         }
 
 
